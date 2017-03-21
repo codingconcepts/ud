@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -24,13 +25,27 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// if no hits, bum out
 	if len(resp.List) < 1 {
+		fmt.Println("No results")
 		return
 	}
 
+	// if multiple results, sort them by rank descending
+	// to ensure the best result is the one we display
+	if len(resp.List) > 1 {
+		sort.Slice(resp.List, func(i int, j int) bool {
+			return resp.List[i].ThumbsUp > resp.List[j].ThumbsUp
+		})
+	}
+
 	example := resp.List[0]
-	fmt.Printf("Definition: %s\n", example.Definition)
-	fmt.Printf("Example: %s\n", example.Example)
+	if example.Definition != "" {
+		fmt.Printf("Definition: %s\n", example.Definition)
+	}
+	if example.Example != "" {
+		fmt.Printf("Example: %s\n", example.Example)
+	}
 }
 
 func request(term string) (answer *model.Response, err error) {
