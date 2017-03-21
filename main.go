@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -68,14 +67,9 @@ func request(term string) (answer *model.Response, err error) {
 	}
 	defer resp.Body.Close()
 
-	var body []byte
-	if body, err = ioutil.ReadAll(resp.Body); err != nil {
-		return
-	}
-	resp.Body.Close()
-
 	answer = new(model.Response)
-	err = json.Unmarshal(body, &answer)
+	decoder := json.NewDecoder(resp.Body)
+	err = decoder.Decode(&answer)
 
 	return
 }
