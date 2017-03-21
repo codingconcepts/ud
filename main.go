@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/codingconcepts/ud/model"
@@ -16,14 +18,19 @@ const (
 )
 
 func main() {
-	resp, err := request("blah")
+	args := os.Args[1:]
+	resp, err := request(strings.Join(args, " "))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, example := range resp.List {
-		fmt.Println(example)
+	if len(resp.List) < 1 {
+		return
 	}
+
+	example := resp.List[0]
+	fmt.Printf("Definition: %s\n", example.Definition)
+	fmt.Printf("Example: %s\n", example.Example)
 }
 
 func request(term string) (answer *model.Response, err error) {
