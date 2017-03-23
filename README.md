@@ -15,7 +15,5 @@ $ go get -u github.com/codingconcepts/ud
 
 ``` bash
 $ ud stuff
-```
-### Output
-<span style="color:red">Definition</span>: The combo of sperm and blood. Usually combines when having sex and your girlfreind has her period<br />
-<span style="color:yellow">Example</span>: Jesus Jeremy the pink stuff is on the floor
+Definition: The combo of sperm and blood. Usually combines when having sex and your girlfreind has her period
+Example: Jesus Jeremy the pink stuff is on the floor
