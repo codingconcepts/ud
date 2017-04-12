@@ -1,0 +1,39 @@
+{
+ "tags": null,
+ "result_type": "",
+ "list": [
+  {
+   "definition": "a",
+   "permalink": "",
+   "thumbs_up": 1,
+   "author": "",
+   "word": "",
+   "defid": 0,
+   "current_vote": "",
+   "example": "",
+   "thumbs_down": 0
+  },
+  {
+   "definition": "b",
+   "permalink": "",
+   "thumbs_up": 2,
+   "author": "",
+   "word": "",
+   "defid": 0,
+   "current_vote": "",
+   "example": "",
+   "thumbs_down": 0
+  },
+  {
+   "definition": "c",
+   "permalink": "",
+   "thumbs_up": 3,
+   "author": "",
+   "word": "",
+   "defid": 0,
+   "current_vote": "",
+   "example": "",
+   "thumbs_down": 0
+  }
+ ]
+}

@@ -1,7 +1,9 @@
 package client
 
 import (
+	"bytes"
 	"encoding/json"
+	"io"
 	"net/http"
 	"time"
 
@@ -34,9 +36,16 @@ func Request(term string) (answer *model.Response, err error) {
 	}
 	defer resp.Body.Close()
 
+	// read in body for JSON unmarshalling (using
+	// unmarshal instead of decode because we receive
+	// a complete JSON object, not a JSON stream)
+	buf := new(bytes.Buffer)
+	if _, err = io.Copy(buf, resp.Body); err != nil {
+		return
+	}
+
 	answer = new(model.Response)
-	decoder := json.NewDecoder(resp.Body)
-	err = decoder.Decode(&answer)
+	err = json.Unmarshal(buf.Bytes(), &answer)
 
 	return
 }
